@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="10dp">
+
+    <ImageView
+        android:id="@+id/album"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:src="@drawable/video1"
+        android:scaleType="fitCenter"
+        />
+
+    <TextView
+        android:id="@+id/album_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="image one"
+        android:padding="8dp"
+        android:gravity="center"
+        android:textSize="18dp"
+        android:textStyle="bold"
+        >
+
+    </TextView>
+
+</LinearLayout>
