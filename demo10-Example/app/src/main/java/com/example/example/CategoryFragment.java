@@ -40,7 +40,7 @@ public class CategoryFragment extends Fragment {
         layoutManager = new GridLayoutManager(context, 2, GridLayoutManager.HORIZONTAL, false);
         recyclerView.setLayoutManager(layoutManager);
 
-        adapter = new CategoryAdapter(strings, images);
+        adapter = new CategoryAdapter(strings, images, context);
         recyclerView.setHasFixedSize(true);
         recyclerView.setAdapter(adapter);
 

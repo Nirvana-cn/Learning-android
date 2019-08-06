@@ -1,5 +1,7 @@
 package com.example.example;
 
+import android.content.Context;
+import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,17 +15,19 @@ import androidx.recyclerview.widget.RecyclerView;
 public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.MyViewHolder> {
     private String[] strings;
     private int[] images;
+    private Context context;
 
-    public CategoryAdapter(String[] strings, int[] image) {
+    public CategoryAdapter(String[] strings, int[] image, Context context) {
         this.strings = strings;
         this.images = image;
+        this.context = context;
     }
 
     @NonNull
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.category_template, parent, false);
-        return new MyViewHolder(view, strings);
+        return new MyViewHolder(view, strings, context);
     }
 
     @Override
@@ -41,18 +45,22 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.MyView
         private ImageView imageView;
         private TextView textView;
         private String[] categoryNames;
+        private Context context;
 
-        public MyViewHolder(View view, String[] strings) {
+        public MyViewHolder(View view, String[] strings, Context context) {
             super(view);
             imageView = view.findViewById(R.id.image);
             textView = view.findViewById(R.id.desc);
             view.setOnClickListener(this);
             this.categoryNames = strings;
+            this.context = context;
         }
 
         public void onClick(View view){
             Log.d("test",categoryNames[getAdapterPosition()]);
-            MainActivity.fragmentManager.beginTransaction().replace(R.id.container, new ListFragment(), null).addToBackStack(null).commit();
+            Intent intent = new Intent(context, ListActivity.class);
+//            intent.putExtra("image_id", "000");
+            context.startActivity(intent);
         }
     }
 }

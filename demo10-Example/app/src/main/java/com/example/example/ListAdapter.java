@@ -35,7 +35,7 @@ public class ListAdapter extends RecyclerView.Adapter {
         }
 
         public void onClick(View view) {
-            MainActivity.fragmentManager.beginTransaction().replace(R.id.container, new ListDetailFragment(), null).addToBackStack(null).commit();
+            ListActivity.fragmentManager.beginTransaction().replace(R.id.container, new ListDetailFragment(), null).addToBackStack(null).commit();
         }
     }
 }
