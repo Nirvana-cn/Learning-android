@@ -5,12 +5,14 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
+import android.util.Log;
 
 public class MainActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
-    private int[] images = {R.drawable.video1, R.drawable.video2, R.drawable.video3, R.drawable.video4, R.drawable.video5, R.drawable.video6};
+    private int[] images = {R.drawable.video1, R.drawable.video2, R.drawable.video3};
+    public int[] counts = {0,0,0};
 
-    private RecyclerAdapter adapter;
+    public static RecyclerAdapter adapter;
     private RecyclerView.LayoutManager layoutManager;
 
     @Override
@@ -23,7 +25,9 @@ public class MainActivity extends AppCompatActivity {
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(layoutManager);
 
-        adapter = new RecyclerAdapter(images, this);
+        adapter = new RecyclerAdapter(images, counts, this);
+        boolean res = adapter.hasObservers();
+        Log.d("ob",String.valueOf(res));
         recyclerView.setAdapter(adapter);
     }
 }
