@@ -69,7 +69,7 @@ public class FileUtils extends Application {
         String filePath = context.getFilesDir() + "/" + programId + "/" + partId + fileType;
         File file = new File(filePath);
 
-        if (file.exists()) {
+        if (!file.exists()) {
             FileException.handleException(MyErrorMessage.FILE_NOT_EXIST);
         }
         return file;
