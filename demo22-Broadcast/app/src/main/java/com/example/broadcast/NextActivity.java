@@ -10,7 +10,7 @@ import android.content.IntentFilter;
 import android.os.Bundle;
 import android.view.View;
 
-public class NextActivity extends AppCompatActivity {
+public class NextActivity extends BaseActivity {
     private LocalBroadcastManager localBroadcastManager = LocalBroadcastManager.getInstance(this);
 
     @Override
