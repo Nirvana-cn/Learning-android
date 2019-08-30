@@ -5,6 +5,7 @@ import androidx.fragment.app.FragmentTransaction;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity implements MessageFragment.Listener {
@@ -41,5 +42,9 @@ public class MainActivity extends AppCompatActivity implements MessageFragment.L
     @Override
     public void show(String string) {
         textView.setText(string);
+    }
+
+    public void startNext(View view) {
+        NextActivity.startActivity(this);
     }
 }
