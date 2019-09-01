@@ -8,6 +8,10 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
+
 public class MainActivity extends AppCompatActivity implements MessageFragment.Listener {
     private FragmentTransaction fragmentTransaction;
     private TextView textView;
@@ -37,6 +41,13 @@ public class MainActivity extends AppCompatActivity implements MessageFragment.L
 
             fragmentTransaction.commit();
         }
+
+        // 启动后台服务
+        Intent service = new Intent(this, MyService.class);
+        startService(service);
+
+        // 注册EventBus
+        EventBus.getDefault().register(this);
     }
 
     @Override
@@ -46,5 +57,10 @@ public class MainActivity extends AppCompatActivity implements MessageFragment.L
 
     public void startNext(View view) {
         NextActivity.startActivity(this);
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void messageEventBus(ServiceEvent serviceEvent) {
+        System.out.println(serviceEvent.message);
     }
 }
