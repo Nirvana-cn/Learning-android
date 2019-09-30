@@ -4,14 +4,14 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 
 import android.os.Bundle;
-import android.util.Log;
-import android.view.View;
 
 import com.example.databinding.databinding.ActivityMainBinding;
-import com.example.databinding.viewModel.User;
+
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class MainActivity extends AppCompatActivity {
-    private User user;
+    public static UserViewModel userViewModel;
     private EventHandle eventHandle;
     private ActivityMainBinding activityMainBinding;
 
@@ -19,18 +19,18 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         activityMainBinding = DataBindingUtil.setContentView(this, R.layout.activity_main);
-        user = new User("lucas", "22");
+        userViewModel = new UserViewModel("lucas", "22");
         eventHandle = new EventHandle();
-        activityMainBinding.setUserInfo(user);
+        activityMainBinding.setUserInfo(userViewModel);
         activityMainBinding.setHandle(eventHandle);
 
-    }
-
-
-
-    public void sendMessage(View view){
-        user.setName("hello world");
-        user.setAge("100");
-        Log.d("test","click is ok");
+        Timer mTimer = new Timer();
+        TimerTask mTimerTask = new TimerTask() {
+            @Override
+            public void run() {
+                UserViewModel.update();
+            }
+        };
+        mTimer.schedule(mTimerTask, 3000);
     }
 }

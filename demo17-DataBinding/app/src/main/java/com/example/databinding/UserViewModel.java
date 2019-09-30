@@ -1,14 +1,14 @@
-package com.example.databinding.viewModel;
+package com.example.databinding;
 
 import androidx.databinding.BaseObservable;
 import androidx.databinding.Bindable;
 import androidx.databinding.library.baseAdapters.BR;
 
-public class User extends BaseObservable {
+public class UserViewModel extends BaseObservable {
     private String name;
     private String age;
 
-    public User(String name, String age) {
+    public UserViewModel(String name, String age) {
         this.name = name;
         this.age = age;
     }
@@ -31,5 +31,10 @@ public class User extends BaseObservable {
     public void setAge(String age) {
         this.age = age;
         notifyPropertyChanged(BR.age);
+    }
+
+    public static void update() {
+        MainActivity.userViewModel.setName("aaa");
+        MainActivity.userViewModel.setAge("100");
     }
 }
